@@ -1,4 +1,5 @@
 import {
+  BakeShadows,
   Environment,
   OrbitControls,
   useAnimations,
@@ -156,14 +157,19 @@ function App() {
     },
   }) as {environment: EnvironmentOptionType}
 
+  // shadow-normalBias={-.000001}
   return (
     <div className="App">
       <Canvas shadows={true}>
-        <pointLight
-          args={[0xffffff, 2, 100]}
-          position={[-2, 10, 5]}
+        <BakeShadows />
+        <directionalLight
+          args={[0xffffff, 2]}
+          position={[-2, 10, 2]}
           castShadow
+          shadow-mapSize={[1024 * 4, 1024 * 4]}
+          shadow-bias={-0.00005}
         />
+        <ambientLight intensity={0.2} />
         <OrbitControls />
         {/*         <ModelViewer /> */}
         <Model />
