@@ -12,6 +12,7 @@ import {Color, MeshBasicMaterial, MeshStandardMaterial, Object3D} from 'three'
 import {GLTFExporter} from 'three/examples/jsm/exporters/GLTFExporter'
 import {saveAs} from 'file-saver'
 import {GLTF} from 'three/examples/jsm/loaders/GLTFLoader'
+import {Model} from './Barracks_SecondAge_Level3'
 
 function* colorGenerator(): Generator<string> {
   let i = -1
@@ -157,10 +158,15 @@ function App() {
 
   return (
     <div className="App">
-      <Canvas>
-        <Environment preset={environment} />
+      <Canvas shadows={true}>
+        <pointLight
+          args={[0xffffff, 2, 100]}
+          position={[-2, 10, 5]}
+          castShadow
+        />
         <OrbitControls />
-        <ModelViewer />
+        {/*         <ModelViewer /> */}
+        <Model />
       </Canvas>
     </div>
   )
